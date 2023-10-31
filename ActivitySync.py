@@ -21,8 +21,8 @@ def syncData(xingzhe_username, xingzhe_password, igp_username, igp_password):
     # login igpsport account
     url = "https://my.igpsport.com/Auth/Login"
     data = {
-        'username': username, 
-        'password': password, 
+        'username': igp_username, 
+        'password': igp_password, 
     }
     session = requests.session()
     res     = session.post(url, data, headers=headers)
@@ -40,13 +40,13 @@ def syncData(xingzhe_username, xingzhe_password, igp_username, igp_password):
     cookie  = session.cookies.get_dict()
     rd      = cookie['rd']
 
-    safe_password           = password + ';' + rd
+    safe_password           = xingzhe_password + ';' + rd
     encrypter_public_key    = "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDmuQkBbijudDAJgfffDeeIButq\nWHZvUwcRuvWdg89393FSdz3IJUHc0rgI/S3WuU8N0VePJLmVAZtCOK4qe4FY/eKm\nWpJmn7JfXB4HTMWjPVoyRZmSYjW4L8GrWmh51Qj7DwpTADadF3aq04o+s1b8LXJa\n8r6+TIqqL5WUHtRqmQIDAQAB\n-----END PUBLIC KEY-----\n"
     safe_password           = encrpt(safe_password, encrypter_public_key)
     
     url     = "https://www.imxingzhe.com/api/v4/account/login"
     data    = {
-        'account': username, 
+        'account': xingzhe_username, 
         'password': safe_password, 
         "source": "web"
     }
