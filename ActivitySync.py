@@ -12,7 +12,7 @@ def encrpt(password, public_key):
     cipher = PKCS1_v1_5.new(rsa)
     return base64.b64encode(cipher.encrypt(password.encode())).decode()
 
-def syncData(username, password):
+def syncData(xingzhe_username, xingzhe_password, igp_username, igp_password):
     headers = {
         'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
         "Accept-Encoding" : "gzip, deflate",
@@ -105,4 +105,4 @@ def syncData(username, password):
             })
 
 
-activity = syncData(os.getenv("USERNAME"), os.getenv("PASSWORD"))
+activity = syncData(os.getenv("XINGZHE_USERNAME"), os.getenv("XINGZHE_PASSWORD"), os.getenv("IGP_USERNAME"), os.getenv("IGP_PASSWORD"))
