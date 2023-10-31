@@ -5,6 +5,7 @@ on:
     - cron: '0 22 * * *'
   watch:
     types: started
+  workflow_dispatch:
 
 jobs:
   sync:
