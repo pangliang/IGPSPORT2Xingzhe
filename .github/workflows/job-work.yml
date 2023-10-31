@@ -24,7 +24,9 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: run srcipt
       env:
-        USERNAME: ${{ secrets.USERNAME }}
-        PASSWORD: ${{ secrets.PASSWORD }}
+        XINGZHE_USERNAME: ${{ secrets.XINGZHE_USERNAME }}
+        XINGZHE_PASSWORD: ${{ secrets.XINGZHE_PASSWORD }}
+        IGP_USERNAME: ${{ secrets.IGP_USERNAME }}
+        IGP_PASSWORD: ${{ secrets.IGP_PASSWORD }}
       run: |
         python ActivitySync.py
